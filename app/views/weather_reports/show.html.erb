@@ -4,4 +4,11 @@
   <div class="error"><%= flash[:error] %></div>
 <% end %>
 
-<p><%= @weather_report %></p>
+<h2>City: <%= @weather_report.city %></h2>
+<h3>Zip Code: <%= @weather_report.zip %></h3>
+<p>Current Temp: <%= @weather_report.temp %></p>
+<p>Hi Temp: <%= @weather_report.hi_temp %></p>
+<p>Low Temp: <%= @weather_report.low_temp %></p>
+<p>Lat/Lon: <%= @weather_report.lat %>/<%= @weather_report.lon %>
+<p>From cache: <%= @from_cache %>
+<p><%= link_to "Back to search", "/" %></p>
