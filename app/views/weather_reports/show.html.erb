@@ -1,0 +1,14 @@
+<h1>Weather Report</h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<h2>City: <%= @weather_report.city %></h2>
+<h3>Zip Code: <%= @weather_report.zip %></h3>
+<h4>Current Temp: <%= @weather_report.temp %></h4>
+<p><b>Hi Temp:</b> <%= @weather_report.hi_temp %></p>
+<p><b>Low Temp:</b> <%= @weather_report.low_temp %></p>
+<p><b>Lat/Lon:</b> <%= @weather_report.lat %>/<%= @weather_report.lon %>
+<p><b>From cache:</b> <%= @from_cache %>
+<p><%= link_to "Back to search", "/" %></p>

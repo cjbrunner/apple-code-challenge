@@ -1,0 +1,11 @@
+<h1>Weather from where?</h1>
+
+<% if flash[:notice] %>
+  <div class="notice alert-info"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_with url: "/weather_reports", method: :get do |form| %>
+  <p><%= form.label :id, "Enter address:" %></p>
+  <%= form.text_field :id, size: 80 %>
+  <p><%= form.submit "Search" %></p>
+<% end %>
