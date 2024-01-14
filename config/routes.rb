@@ -3,4 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  # root 'weather_reports#index'
+  # get '/weather_reports', to: 'weather_reports#index'
+  # get '/weather_reports/:id', to: 'weather_reports#show'
+  # post '/weather_reports/:id', to: 'weather_reports#show'
+  # post '/weather_reports', to: 'weather_reports#show'
+  resource :weather_reports
+
+  root "weather_reports#index"
+
 end

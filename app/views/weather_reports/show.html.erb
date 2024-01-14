@@ -1,0 +1,7 @@
+<h1>Weather Report</h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<p><%= @weather_report %></p>
