@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 gem "rest-client", "~> 2.1"
 gem "dotenv"
 
+gem 'Indirizzo'
 gem 'open-weather-ruby-client'
 
 group :development, :test do
