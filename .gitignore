@@ -39,3 +39,6 @@
 
 # VS Code
 .vscode
+
+# Debugging
+.byebug_history

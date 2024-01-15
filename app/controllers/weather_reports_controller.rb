@@ -1,7 +1,18 @@
 require 'indirizzo'
 
 class WeatherReportsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
+  end
+
+  def create
+    @weather_report = WeatherReport.new(weather_report_params)
+    if @weather_report.save!
+      render json: @weather_report, status: :created
+    else
+      render json: @weather_report.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,21 +32,31 @@ class WeatherReportsController < ApplicationController
     else
       begin
         # Otherwise, run the API call and add a record
-        api_data = $weather_client.current_zip(address.zip)
-        @weather_report = WeatherReport.new(
-          zip: address.zip,
-          lat: api_data.coord.lat,
-          lon: api_data.coord.lon,
-          temp: api_data.main.temp,
-          hi_temp: api_data.main.temp_max,
-          low_temp: api_data.main.temp_min,
-          city: api_data.name
-        )
+        weather_data = translate_weather_api($weather_client.current_zip(address.zip))
+        # Insert ZIP code (data from weather API doesn't include it)
+        weather_data[:zip] = address.zip
+        @weather_report = WeatherReport.create(weather_data)
         @from_cache = false
-        @weather_report.save!
       rescue
         redirect_to "/", notice: "Invalid entry"
       end
     end
+  end
+
+  private
+
+  def translate_weather_api from_api
+    for_model = {
+      lat: from_api.coord.lat,
+      lon: from_api.coord.lon,
+      temp: from_api.main.temp,
+      hi_temp: from_api.main.temp_max,
+      low_temp: from_api.main.temp_min,
+      city: from_api.name
+    }
+  end
+
+  def weather_report_params
+    params.require(:weather_report).permit(:zip, :lat, :lon, :temp, :hi_temp, :low_temp, :city)
   end
 end
