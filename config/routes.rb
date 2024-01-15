@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   root "weather_reports#index"
 
+  get 'health', to: 'health#index'
+
 end
