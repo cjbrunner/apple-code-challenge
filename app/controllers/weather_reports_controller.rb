@@ -37,6 +37,8 @@ class WeatherReportsController < ApplicationController
         weather_data[:zip] = address.zip
         @weather_report = WeatherReport.create(weather_data)
         @from_cache = false
+      rescue OpenWeather::Errors::Fault => error
+        redirect_to "/", notice: error.message
       rescue
         redirect_to "/", notice: "Invalid entry"
       end
