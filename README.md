@@ -1,24 +1,13 @@
-# README
+# Ruby on Rails weather app code challenge for Apple
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites and config
+This Ruby on Rails weather app was written with Ruby 3.2.2 and Rails 7.0.8.  It requires an API key from OpenWeather, which is put into a .env file in the application root.  See .env.template for details.
 
-Things you may want to cover:
+## Initial setup
+Before running the app for the first time, create the database by running `bin/rails db:setup` from the app root.
 
-* Ruby version
+## Running
+Run the app like many Rails apps, run `bin/rails server` from the app root. This will start the server on localhost with the default port of 3000.  Visit your server by going to [http://localhost:3000](http://localhost:3000)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Testing
+Unit tests can be run from the app root by running `bin/bundle exec rspec`
